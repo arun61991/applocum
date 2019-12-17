@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Appointments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Appointment date</th>
+      <th>Doctor</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @appointments.each do |appointment| %>
+      <tr>
+        <td><%= appointment.status %></td>
+        <td><%= appointment.appointment_date %></td>
+        <td><%= appointment.doctor_patient.doctor.first_name + " " + appointment.doctor_patient.doctor.last_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

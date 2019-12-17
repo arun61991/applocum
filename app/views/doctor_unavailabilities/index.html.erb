@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Doctor Unavailabilities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @doctor_unavailabilities.each do |doctor_unavailability| %>
+      <tr>
+        <th><%= doctor_unavailability.start_date %></th>
+        <th><%= doctor_unavailability.end_date %></th>
+        <td><%= link_to 'Show', doctor_unavailability %></td>
+        <td><%= link_to 'Edit', edit_doctor_unavailability_path(doctor_unavailability) %></td>
+        <td><%= link_to 'Destroy', doctor_unavailability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Doctor Unavailability', new_doctor_unavailability_path %>

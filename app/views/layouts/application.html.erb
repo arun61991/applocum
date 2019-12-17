@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mytestapp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<% if notice %>
+	  <p class="alert alert-success"><%= notice %></p>
+	<% end %>
+	<% if alert %>
+	  <p class="alert alert-danger"><%= alert %></p>
+	<% end %>
+
+	<p class="navbar-text float-right">
+	<% if doctor_signed_in? %>
+	  Logged in as <strong><%= current_doctor.email %></strong>.
+	  <%= link_to 'Edit Doctor profile', edit_doctor_registration_path, :class => 'navbar-link' %> |
+	  <%= link_to "Logout Doctor", destroy_doctor_session_path, method: :delete, :class => 'navbar-link'  %> |
+	  <%= link_to "List Appointment", appointments_path, :class => 'navbar-link'  %> |
+	  <%= link_to "Add Unavailability", doctor_unavailabilities_path, :class => 'navbar-link'  %>
+	<% elsif patient_signed_in? %>
+	  Logged in as <strong><%= current_patient.email %></strong>.
+	  <%= link_to 'Edit Patient profile', edit_patient_registration_path, :class => 'navbar-link' %> |
+	  <%= link_to "Logout Patient", destroy_patient_session_path, method: :delete, :class => 'navbar-link'  %> |
+	  <%= link_to "Book Appointment", new_appointment_path, :class => 'navbar-link'  %>
+	  <%= link_to "Appointment Status", patient_patient_index_path, :class => 'navbar-link'  %>
+	<% else %>
+	  <%= link_to "Doctor Sign up", new_doctor_registration_path, :class => 'navbar-link'  %> |
+	  <%= link_to "Doctor Login", new_doctor_session_path, :class => 'navbar-link'  %> |
+	  <%= link_to "Patient Sign up", new_patient_registration_path, :class => 'navbar-link'  %> |
+	  <%= link_to "patient Login", new_patient_session_path, :class => 'navbar-link'  %>
+	<% end %>
+	</p>
+    <%= yield %>
+  </body>
+</html>
